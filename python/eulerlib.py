@@ -33,8 +33,8 @@ def smallest_prime_factor(n: int) -> int:
     # If nothing is found, n is prime. 
     return n
 
+def square_of_sums(n: int) -> int:
+     return sum(range(n+1)) ** 2
 
-
-
-
-
+def sum_of_squares(n: int) -> int:
+    return sum([x**2 for x in range(n+1)])
