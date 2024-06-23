@@ -8,8 +8,35 @@ def fibonacci(n: int) -> Generator[int,None,None]:
         yield x
         x, y = y, x + y
 
+def generate_primes() -> Generator[int,None,None]:
+    D = {}
+    q : int = 2
+    while True:
+        # Is prime.
+        if q not in D:
+            yield q
+            D[q*q] = q
+        ## Is not prime.
+        else:
+            p : int = D[q] + q
+            while p in D:
+                p += D[q]
+            D[p] = D[q]
+            del D[q]
+        q += 1
+
 def is_palindrome(n: int) -> bool:
     return n == reverse_number(n)
+
+def is_prime(n: int) -> bool:
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    for i in range(2, isqrt(n + 1)):
+        if n % i == 0:
+            return False
+    return True
         
 def reverse_number(n: int) -> int:
     negative : bool = False
