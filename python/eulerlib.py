@@ -8,6 +8,16 @@ def fibonacci(n: int) -> Generator[int,None,None]:
         yield x
         x, y = y, x + y
 
+def prime_sieve(n: int) -> list[int]:
+    primes = [True for i in range(n + 1)]
+    primes[0] = False
+    primes[1] = False
+    for i in range(2, isqrt(n) + 1):
+        if primes[i]:
+            for j in range(i+i, n, i):
+                primes[j] = False
+    return [i for i in range(n) if primes[i]]
+
 def generate_primes() -> Generator[int,None,None]:
     D = {}
     q : int = 2
